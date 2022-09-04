@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <link rel="stylesheet" href="./assets/css/reset.css"/>
-    
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -26,7 +26,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assests/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
     <title>Weather Dashboard</title>
     <!-- <link rel="icon" type="image/x-icon" href="./assests/images/favicon.jpg"/> -->
@@ -40,12 +40,15 @@
     <form class="city-search" id="city-search">
         <div class="form-group row">
             <div class="col-md-3">
-                <label for="formGroupExampleInput">Search for a City:</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Hobart">
-                <button type="submit" class="btn btn-primary" id="search-btn">Search</button>
+                <label for="city-search-form">Search for a City:</label>
+                <input type="text" class="form-control" id="user-input" placeholder="Hobart">
+                <button type="submit" class="btn btn-block" id="search-btn">Search</button>
             </div>
         </div>
     </form>
+    
+    <container class="previous-search" id="previous-search">
+    </container>
 
     <container class="current-day-result" id="current-day-result">
     </container>
@@ -57,7 +60,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-    <script src="./assests/js/javascript.js"></script>
+    <script src="./assets/js/script.js"></script>
 
   </body>
 </html>
