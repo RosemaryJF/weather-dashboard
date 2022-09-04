@@ -7,15 +7,7 @@ var APIKey = "f39d9467ef1aba260c6801b3458f906e";
 
 var searchFormEl = document.getElementById("city-search");
 
-// function citySearch (event) {
 
-//     var city = document.querySelector("#user-input").value;
-    
-
-//     searchFormEl.addEventListener("submit", citySearch);
-//     event.preventDefault();
-// }
-// citySearch()
 $(document).ready(function(citySearch){
 
     $("form").submit(function (event) {
@@ -23,24 +15,13 @@ $(document).ready(function(citySearch){
         var userCityEntry = $("#user-input").val()
         console.log(userCityEntry);
         localStorage.setItem("City Search", userCityEntry);
+
+        $("#search-history").text(userCityEntry);
     });
 
     citySearch()
-})
+});
 
-
-
-
-
-// $( "#city-search" ).submit(function( event ) {
-//     event.preventDefault();
-//     var userCityEntry = $(this).siblings(".user-input").val();
-//         userCityEntry = $.trim(userCityEntry);
-//         console.log(userCityEntry);
-//         console.log(citySearch);
-
-//         localStorage.setItem("City Search", userCityEntry);
-//   });
 
 
 
