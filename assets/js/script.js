@@ -13,68 +13,81 @@ function citySearch () {
         console.log(userCityEntry);
         localStorage.setItem("City Search", userCityEntry);
 
-        // $("#search-history").text(userCityEntry);
-        resultsReturn()
-        displayResults()
+        $("#search-history").text(userCityEntry);
+        returnResultsCurrentDay()
+        returnResultsFiveDay()
+        // displayResults()
     })
 }
 
 citySearch()
 
     
-function resultsReturn () {
+function returnResultsCurrentDay () {
     userCityEntry = $("#user-input").val().toLowerCase()
-
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric&temperature.value=&wind.speed=&humidity.value=";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric&temperature.value=&wind.speed=&humidity.value=&current.uvi=";
     fetch(queryURL)
         .then(function (response) {
-            if (response.ok) {
-                return response.json()
-            }
-        })
+                return response.json();
+            })
+
+        .then (function(data) {
+            console.log(data)
+            console.log(data.main.temp)
+            console.log(data.wind.speed)
+            console.log(data.main.humidity)
+            console.log(data.uvi)
+
+            var cityName = data.name
+            var temperature = data.main.temp
+            var wind = data.wind.speed
+            var humidity = data.main.humidity
+            var uvIndex = data.uvi
         
-        .then(function (data) {
-            for (var i=0; i < data.length; i++) {
-                console.log(data[i].name)
+            $(".results-display").append("h2");
+            $("h2").append(cityName);
+            $(".results-display").append(".ul");
+            $("ul").append("li");
+            $("li").append(
+                temperature,
+                wind,
+                humidity,
+                uvIndex
+            )
+            // results.appendChild(resultsDisplayEl);
+            // results.appendChild(cityName);
+            // results.appendChild(temperature);
+            // results.appendChild(wind);
+            // results.appendChild(humidity);
+            // results.appendChild(uvIndex);
+            // displayResults()
+        
+        
+        
+        // .then(function (data) {
+        //     for (var i=0; i < data.length; i++) {
+        //         console.log(data[i])
                 // console.log(data[i].name)
                 // console.log(data[i].main.temp)
                 // console.log(data[i].wind.speed)
                 // console.log(data[i].main.humidity)
                 // console.log(data[i].uvi)
                     
-            }
-        })
-}
-
-function displayResults () {
-
-}
-        //       $(resultsDisplayEl).text(data);
-        //     });
-        //   } else {
-        //     alert('Error: ' + response.statusText);
-        //   }
-        // })
-
-        // .then(function (response) {
-        //     return response.json();
-        //   })
-        //   .then(function (data) {
-        //     console.log('Github Repo Issues \n----------');
-        //     for (var i = 0; i < data.length; i++) {
-        //       console.log(data[i].url);
-        //       console.log(data[i].user.login);
-        //     }
-        //   });
-        
-
-    //  .then(function (data) {
-    //     for (var i = 0; i < data.length; i++) {
-    //         // resultsDisplayEl.textContent = data[i]
-    //         console.log(data)
-    //     }
-    
-
+            })
+        }
+//         })
+// }
+function returnResultsFiveDay () {
+    userCityEntry = $("#user-input").val().toLowerCase()
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCityEntry + "&cnt=960&appid=" + APIKey + "&units=metric&temperature.value=&wind.speed=&humidity.value=&current.uvi=";
+    fetch(queryURL)
+        .then(function (response) {
+                return response.json();
+            })
+        .then(function (data){
+            console.log(data)
+        }) 
+    }
 
 
 
