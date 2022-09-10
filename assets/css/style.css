@@ -5,3 +5,43 @@
     --shadowcolor: #D1D1D1;
 }
 
+body {
+    width: 100%;
+    line-height: 1;
+
+}
+
+header {
+    text-align: center;
+    background-color: var(--maincolor);
+    color: var(--fontcolor);
+    height: 6rem;
+    padding-top: 2%;
+    margin-bottom: 1%;
+}
+
+.city-search{
+    margin-left: 2%;
+    justify-content: left;
+    
+    
+}
+
+container {
+    border-color: var(--secondarycolor);
+    border-radius: 10%;
+}
+
+.current-day-result {
+    width: 70%;
+    border-color: var(--secondarycolor);
+    border-radius: 10%;
+    justify-content: space-evenly;
+}
+
+span {
+    width: 70%;
+    margin-left: 3%;
+    padding-bottom: 1%;
+}
+

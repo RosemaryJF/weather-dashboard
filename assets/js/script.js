@@ -9,7 +9,7 @@ var resultsDisplayEl = $(".results-display")
 function citySearch () {
     $("form").submit(function (event) {
         event.preventDefault();
-        userCityEntry = $("#user-input").val()
+        userCityEntry = $("#user-input".val)
         console.log(userCityEntry);
         localStorage.setItem("City Search", userCityEntry);
 
@@ -44,16 +44,11 @@ function returnResultsCurrentDay () {
             var humidity = data.main.humidity
             var uvIndex = data.uvi
         
-            $(".results-display").append("h2");
-            $("h2").append(cityName);
-            $(".results-display").append(".ul");
-            $("ul").append("li");
-            $("li").append(
-                temperature,
-                wind,
-                humidity,
-                uvIndex
-            )
+            $("#results-display").append(cityName);
+            $("#temperature").append(temperature);
+            $("#wind").append(wind);
+            $("#humidity").append(humidity);
+            $("#uv-index").append(uvIndex);
             // results.appendChild(resultsDisplayEl);
             // results.appendChild(cityName);
             // results.appendChild(temperature);
