@@ -48,11 +48,14 @@
     </form>
 
     <!-- Container holding the current day city results -->
-    <container class="current-day-result" >
-      <div class="row col-sm-10" id="current-day-result">
-        <h2 id="results-display"><span><img id="weather-icon"></span></h2>
-          <span id="temperature"></span>
-          <span id="wind"></span>
+    <container class="current-day-result">
+      <div class="row col-md-12" id="current-day-result">
+        <h2 id="results-display">
+          <img id="weather-icon">
+        </h2>
+
+        <span id="temperature"></span>
+        <span id="wind"></span>
           <span id="humidity"></span>
           <span id="uv-index"></span>
         </div>
@@ -60,7 +63,7 @@
 
     <!-- Container holding the 5 day results -->
     <container class="five-day-result">
-      <div class="row col-sm-10" id="five-day-result">
+      <div class="row col-md-10" id="five-day-result">
         <h2 id="five-day-result-display"></h2>
         <div class="column col five-day" id="first-day"></div>
         <div class="column col five-day" id="second-day"></div>

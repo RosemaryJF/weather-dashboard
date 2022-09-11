@@ -34,17 +34,14 @@ button {
     justify-content: left;
 }
 
-.current-day-result {
-    width: 70%;
-    border-color: var(--secondarycolor);
-    border-radius: 10%;
-    justify-content: space-evenly;
+container #current-day-result {
+    background-color: var(--shadowcolor);
+    border-radius: 10px;
+    margin: 15px;
 }
 
 h2 {
     width: 60%;
-    margin-left: 3%;
-    padding: 1%;
 }
 span {
     width: 70%;
