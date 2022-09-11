@@ -20,16 +20,18 @@ header {
     margin-bottom: 1%;
 }
 
-.city-search{
-    margin-left: 2%;
-    justify-content: left;
-    
-    
+form label {
+    font-size: 200%;
 }
 
-container {
-    border-color: var(--secondarycolor);
-    border-radius: 10%;
+input,
+button {
+    margin-top: 10%;
+}
+
+.city-search {
+    margin-left: 2%;
+    justify-content: left;
 }
 
 .current-day-result {
@@ -39,9 +41,23 @@ container {
     justify-content: space-evenly;
 }
 
+h2 {
+    width: 60%;
+    margin-left: 3%;
+    padding: 1%;
+}
 span {
     width: 70%;
     margin-left: 3%;
-    padding-bottom: 1%;
+    padding: 2%;
+}
+
+#first-day,
+#second-day,
+#third-day,
+#fourth-day,
+#fifth-day {
+    background-color: var(--shadowcolor);
+    margin: 10%;
 }
 
