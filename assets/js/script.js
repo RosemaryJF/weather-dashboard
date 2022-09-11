@@ -17,8 +17,10 @@ function citySearch () {
         $("#search-history").text(userCityEntry);
         returnResultsCurrentDay()
         returnResultsFiveDay()
-        // returnFiveDayDate()
+        returnFiveDayDate()
+        return
     })
+    
 }
 citySearch()
 
@@ -71,24 +73,23 @@ function returnResultsCurrentDay () {
         })
 }
 
+// Function to generate 5 dates from current day using moment
+function returnFiveDayDate () {
+    var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
+    var dayTwo = moment().add(2, "days").format("DD/MM/YYYY");
+    var dayThree = moment().add(3, "days").format("DD/MM/YYYY");
+    var dayFour = moment().add(4, "days").format("DD/MM/YYYY");
+    var dayFive = moment().add(5, "days").format("DD/MM/YYYY");
+    
+    $("#first-day").prepend(dayOne);
+    $("#second-day").prepend(dayTwo);
+    $("#third-day").prepend(dayThree);
+    $("#fourth-day").prepend(dayFour);
+    $("#fifth-day").prepend(dayFive);
+}
+
 
 function returnResultsFiveDay () {
-
-    // Function to generate 5 dates from current day using moment
-    function returnFiveDayDate () {
-        var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
-        var dayTwo = moment().add(2, "days").format("DD/MM/YYYY");
-        var dayThree = moment().add(3, "days").format("DD/MM/YYYY");
-        var dayFour = moment().add(4, "days").format("DD/MM/YYYY");
-        var dayFive = moment().add(5, "days").format("DD/MM/YYYY");
-        
-        $("#first-day").append(dayOne);
-        $("#second-day").append(dayTwo);
-        $("#third-day").append(dayThree);
-        $("#fourth-day").append(dayFour);
-        $("#fifth-day").append(dayFive);
-    }
-
     userCityEntry = $("#user-input").val()
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric";
     fetch(queryURL)
@@ -100,18 +101,77 @@ function returnResultsFiveDay () {
             var fiveDayForecastEls = document.querySelectorAll(".five-day");
             for (i = 0; i < fiveDayForecastEls.length; i++) {
                 fiveDayForecastEls[i].innerHTML = "";
-                var forecastIndex = i * 8 + 4;
+                
+                var forecastIndex = i + 4;
+                console.log(forecastIndex)
                 // var futureForecastTemperature = (data.list[forecastIndex].main.temp);
                 var futureForecastTemperature = (data.list[forecastIndex].main.temp);
                 var futureForecastWind = (data.list[forecastIndex].wind.speed);
                 var futureForecastHumidity = (data.list[forecastIndex].main.humidity);
+                var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
+            
                         
-                $("#first-day" , "#second-day", "#third-day", "#fourth-day", "#fifth-day").append(
-                    futureForecastTemperature,
-                    futureForecastWind,
+                $("#first-day").append( 
+                    dayOne +
+                    "</br>" + "Temp: " +
+                    futureForecastTemperature + 
+                    "</br>" + "Wind: " +
+                    futureForecastWind + 
+                    "</br>" + "Humidity: " +
                     futureForecastHumidity);
 
-                return returnFiveDayDate()
+                forecastIndex = i + 12;
+                    futureForecastTemperature = (data.list[forecastIndex].main.temp);
+                    futureForecastWind = (data.list[forecastIndex].wind.speed);
+                    futureForecastHumidity = (data.list[forecastIndex].main.humidity);
+
+                    $("#second-day").append( 
+                        "</br>" + "Temp: " +
+                        futureForecastTemperature + 
+                        "</br>" + "Wind: " +
+                        futureForecastWind + 
+                        "</br>" + "Humidity: " +
+                        futureForecastHumidity);
+
+                forecastIndex = i + 20;
+                    futureForecastTemperature = (data.list[forecastIndex].main.temp);
+                    futureForecastWind = (data.list[forecastIndex].wind.speed);
+                    futureForecastHumidity = (data.list[forecastIndex].main.humidity);
+    
+                    $("#third-day").append( 
+                        "</br>" + "Temp: " +
+                        futureForecastTemperature + 
+                        "</br>" + "Wind: " +
+                        futureForecastWind + 
+                        "</br>" + "Humidity: " +
+                        futureForecastHumidity);
+
+                forecastIndex = i + 28;
+                    futureForecastTemperature = (data.list[forecastIndex].main.temp);
+                    futureForecastWind = (data.list[forecastIndex].wind.speed);
+                    futureForecastHumidity = (data.list[forecastIndex].main.humidity);
+        
+                    $("#fourth-day").append( 
+                        "</br>" + "Temp: " +
+                        futureForecastTemperature + 
+                        "</br>" + "Wind: " +
+                        futureForecastWind + 
+                        "</br>" + "Humidity: " +
+                        futureForecastHumidity);
+
+                forecastIndex = i + 36;
+                    futureForecastTemperature = (data.list[forecastIndex].main.temp);
+                    futureForecastWind = (data.list[forecastIndex].wind.speed);
+                    futureForecastHumidity = (data.list[forecastIndex].main.humidity);
+    
+                    $("#fifth-day").append( 
+                        "</br>" + "Temp: " +
+                        futureForecastTemperature + 
+                        "</br>" + "Wind: " +
+                        futureForecastWind + 
+                        "</br>" + "Humidity: " +
+                        futureForecastHumidity);
+                return
             }
         })
 }
