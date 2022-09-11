@@ -20,14 +20,14 @@ function citySearch () {
         // returnFiveDayDate()
     })
 }
-
 citySearch()
 
 
 // Function to retrieve current day weather for user city search
 function returnResultsCurrentDay () {
-    userCityEntry = $("#user-input").val().toLowerCase()
-    var queryURL =  "https://api.openweathermap.org/data/2.5/weather?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric&temperature.value=&wind.speed=&humidity.value=&current.uvi=";
+    userCityEntry = $("#user-input").val()
+    var queryURL =  "https://api.openweathermap.org/data/2.5/weather?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric";
+    // &temperature.value=&wind.speed=&humidity.value=&current.uvi="
 
     fetch(queryURL)
         .then(function (response) {
@@ -52,7 +52,7 @@ function returnResultsCurrentDay () {
             $("#results-display").append(cityName + date);
             $("#weather-icon").attr("src", weatherIconURL);
             $("#temperature").append("Temp: " + temperature + "\xB0C");
-            $("#wind").append("Wind: " + wind + " kM/h");
+            $("#wind").append("Wind: " + wind + " km/h");
             $("#humidity").append("Humidity: " + humidity + "%");
             $("#uv-index").append("UV Index: " + uvIndex);
 
@@ -73,7 +73,23 @@ function returnResultsCurrentDay () {
 
 
 function returnResultsFiveDay () {
-    userCityEntry = $("#user-input").val().toLowerCase()
+
+    // Function to generate 5 dates from current day using moment
+    function returnFiveDayDate () {
+        var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
+        var dayTwo = moment().add(2, "days").format("DD/MM/YYYY");
+        var dayThree = moment().add(3, "days").format("DD/MM/YYYY");
+        var dayFour = moment().add(4, "days").format("DD/MM/YYYY");
+        var dayFive = moment().add(5, "days").format("DD/MM/YYYY");
+        
+        $("#first-day").append(dayOne);
+        $("#second-day").append(dayTwo);
+        $("#third-day").append(dayThree);
+        $("#fourth-day").append(dayFour);
+        $("#fifth-day").append(dayFive);
+    }
+
+    userCityEntry = $("#user-input").val()
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric";
     fetch(queryURL)
         .then(function (response) {
@@ -84,28 +100,19 @@ function returnResultsFiveDay () {
             var fiveDayForecastEls = document.querySelectorAll(".five-day");
             for (i = 0; i < fiveDayForecastEls.length; i++) {
                 fiveDayForecastEls[i].innerHTML = "";
-                // var forecastIndex = i * 8 + 4;
-                // var forecastDate = new Date(data.list[forecastIndex].dt * 1000);
-                // console.log(forecastDate)
-                
-                
-                function returnFiveDayDate () {
-                    var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
-                    var dayTwo = moment().add(2, "days").format("DD/MM/YYYY");
-                    var dayThree = moment().add(3, "days").format("DD/MM/YYYY");
-                    var dayFour = moment().add(4, "days").format("DD/MM/YYYY");
-                    var dayFive = moment().add(5, "days").format("DD/MM/YYYY");
-                    
-                    $("#first-day").append(dayOne);
-                    $("#second-day").append(dayTwo);
-                    $("#third-day").append(dayThree);
-                    $("#fourth-day").append(dayFour);
-                    $("#fifth-day").append(dayFive);
-                }
-                return returnFiveDayDate()
-                
-            }})
-            
+                var forecastIndex = i * 8 + 4;
+                // var futureForecastTemperature = (data.list[forecastIndex].main.temp);
+                var futureForecastTemperature = (data.list[forecastIndex].main.temp);
+                var futureForecastWind = (data.list[forecastIndex].wind.speed);
+                var futureForecastHumidity = (data.list[forecastIndex].main.humidity);
+                        
+                $("#first-day" , "#second-day", "#third-day", "#fourth-day", "#fifth-day").append(
+                    futureForecastTemperature,
+                    futureForecastWind,
+                    futureForecastHumidity);
 
-        }
+                return returnFiveDayDate()
+            }
+        })
+}
 
