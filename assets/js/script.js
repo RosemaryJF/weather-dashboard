@@ -17,7 +17,7 @@ function citySearch () {
         $("#search-history").text(userCityEntry);
         returnResultsCurrentDay()
         returnResultsFiveDay()
-        // displayResults()
+        // returnFiveDayDate()
     })
 }
 
@@ -51,9 +51,9 @@ function returnResultsCurrentDay () {
         
             $("#results-display").append(cityName + date);
             $("#weather-icon").attr("src", weatherIconURL);
-            $("#temperature").append("Temp: " + temperature);
-            $("#wind").append("Wind: " + wind);
-            $("#humidity").append("Humidity: " + humidity);
+            $("#temperature").append("Temp: " + temperature + "\xB0C");
+            $("#wind").append("Wind: " + wind + " kM/h");
+            $("#humidity").append("Humidity: " + humidity + "%");
             $("#uv-index").append("UV Index: " + uvIndex);
 
             // var longitude = data.coord.lon;
@@ -80,31 +80,32 @@ function returnResultsFiveDay () {
                 return response.json();
             })
         .then(function (data){
-        //     console.log(data)
-            var fiveDayResultDisplay = $("#five-day-result")
-            for (i = 0; i < data.length; i++) {
-                console.log(fiveDayResultDisplay);
+            console.log(data.list)
+            var fiveDayForecastEls = document.querySelectorAll(".five-day");
+            for (i = 0; i < fiveDayForecastEls.length; i++) {
+                fiveDayForecastEls[i].innerHTML = "";
+                // var forecastIndex = i * 8 + 4;
+                // var forecastDate = new Date(data.list[forecastIndex].dt * 1000);
+                // console.log(forecastDate)
                 
-                var forecastIndex = i * 8 + 4;
-                var forecastDate = new Date(data.list[forecastIndex].dt * 1000);
-                const forecastDay = forecastDate.getDate();
-                const forecastMonth = forecastDate.getMonth() + 1;
-                const forecastYear = forecastDate.getFullYear();
-                const forecastDateEl = document.createElement("p");
-                forecastDateEl.setAttribute("class", "mt-3 mb-0 forecast-date");
-                forecastDateEl.innerHTML = forecastMonth + "/" + forecastDay + "/" + forecastYear;
-                forecastEls[i].append(forecastDateEl);
-
-
-                var weatherIconCode = data.weather[0].icon;
-                var weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
-                var temperature = data.main.temp;
-                var wind = data.wind.speed;
-                var humidity = data.main.humidity;
-
-                var date = moment().format(" (DD/MM/YYYY) ");
-            }
+                
+                function returnFiveDayDate () {
+                    var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
+                    var dayTwo = moment().add(2, "days").format("DD/MM/YYYY");
+                    var dayThree = moment().add(3, "days").format("DD/MM/YYYY");
+                    var dayFour = moment().add(4, "days").format("DD/MM/YYYY");
+                    var dayFive = moment().add(5, "days").format("DD/MM/YYYY");
+                    
+                    $("#first-day").append(dayOne);
+                    $("#second-day").append(dayTwo);
+                    $("#third-day").append(dayThree);
+                    $("#fourth-day").append(dayFour);
+                    $("#fifth-day").append(dayFive);
+                }
+                return returnFiveDayDate()
+                
+            }})
             
 
-        }) 
-    }
+        }
+

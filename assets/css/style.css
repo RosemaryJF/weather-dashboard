@@ -20,6 +20,10 @@ header {
     margin-bottom: 1%;
 }
 
+form {
+    width: 60rem; 
+}
+
 form label {
     font-size: 200%;
 }
@@ -32,21 +36,22 @@ button {
 .city-search {
     margin-left: 2%;
     justify-content: left;
+    width: 100rem;
 }
 
 container #current-day-result {
     background-color: var(--shadowcolor);
     border-radius: 10px;
-    margin: 15px;
+    margin: 5px;
 }
 
-h2 {
-    width: 60%;
-}
 span {
-    width: 70%;
-    margin-left: 3%;
+    width: 65%;
     padding: 2%;
+}
+
+#five-day-result {
+    margin-left: 20%;
 }
 
 #first-day,
@@ -54,7 +59,10 @@ span {
 #third-day,
 #fourth-day,
 #fifth-day {
-    background-color: var(--shadowcolor);
-    margin: 10%;
+    background-color: var(--secondarycolor);
+    margin: 5px;
+    border-radius: 5px;
+    color: var(--fontcolor);
+    font-weight: bold;
 }
 

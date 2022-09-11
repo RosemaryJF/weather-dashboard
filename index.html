@@ -39,46 +39,49 @@
 
     <!-- Form containing all the search elements -->
     <form class="city-search" id="city-search">
-        <div class="form-group row">
-          <div class="col-sm-2">
+    <div class="form-group row">
+      <div class="col-lg-2">
             <label for="city-search-form">Search for a City:</label>
             <input type="text" class="form-control" id="user-input" placeholder="Hobart">
-            <button type="submit" class="btn btn-block" id="search-btn" style="background-color: #C0A080">Search</button>
+            <button type="submit" class="btn btn-block" id="search-btn" style="background-color: #C0A080; color: #EFEFEF; font-weight: bold">Search</button>
         </div>
-    </form>
+      </form>
 
-    <!-- Container holding the current day city results -->
-    <container class="current-day-result">
-      <div class="row col-md-12" id="current-day-result">
-        <h2 id="results-display">
-          <img id="weather-icon">
-        </h2>
-
+      <!-- Container holding the current day city results -->
+      <container class="current-day-result">
+      <div class="row col-lg-10" id="current-day-result">
+        <h2 id="results-display"></h2>
+        <img id="weather-icon">
         <span id="temperature"></span>
         <span id="wind"></span>
-          <span id="humidity"></span>
-          <span id="uv-index"></span>
-        </div>
+        <span id="humidity"></span>
+        <span id="uv-index"></span>
+      </div>
+    </div>
     </container>
+
+    <!-- Container holding previous search results -->
+      <container class="previous-search" id="previous-search">
+        <div class="row">
+          <div class="col-lg-2" id="search-history"></div>
+        </div>
+      </container>
 
     <!-- Container holding the 5 day results -->
     <container class="five-day-result">
-      <div class="row col-md-10" id="five-day-result">
+      <div class="row col-lg-10" id="five-day-result">
         <h2 id="five-day-result-display"></h2>
-        <div class="column col five-day" id="first-day"></div>
-        <div class="column col five-day" id="second-day"></div>
-        <div class="column col five-day" id="third-day"></div>
-        <div class="column col five-day" id="fourth-day"></div>
-        <div class="column col five-day" id="fifth-day"></div>
+        <div class="col five-day" id="first-day"></div>
+        <div class="col five-day" id="second-day"></div>
+        <div class="col five-day" id="third-day"></div>
+        <div class="col five-day" id="fourth-day"></div>
+        <div class="col five-day" id="fifth-day"></div>
       </div>
     </container> 
     
 
-    <!-- <div class="previous-search" id="previous-search">
-        <div class="row">
-          <div class="col-sm-3" id="search-history"></div>
-        </div>
-    </div> -->
+
+
 
  
 
