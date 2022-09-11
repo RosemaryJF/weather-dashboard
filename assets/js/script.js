@@ -14,6 +14,7 @@ function citySearch () {
         console.log(userCityEntry);
         localStorage.setItem("City Search", userCityEntry);
 
+        
         $("#search-history").text(userCityEntry);
         returnResultsCurrentDay()
         returnResultsFiveDay()
@@ -75,13 +76,13 @@ function returnResultsCurrentDay () {
 
 // Function to generate 5 dates from current day using moment
 function returnFiveDayDate () {
-    var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
+    // var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
     var dayTwo = moment().add(2, "days").format("DD/MM/YYYY");
     var dayThree = moment().add(3, "days").format("DD/MM/YYYY");
     var dayFour = moment().add(4, "days").format("DD/MM/YYYY");
     var dayFive = moment().add(5, "days").format("DD/MM/YYYY");
     
-    $("#first-day").prepend(dayOne);
+    // $("#first-day").prepend(dayOne);
     $("#second-day").prepend(dayTwo);
     $("#third-day").prepend(dayThree);
     $("#fourth-day").prepend(dayFour);
@@ -104,15 +105,18 @@ function returnResultsFiveDay () {
                 
                 var forecastIndex = i + 4;
                 console.log(forecastIndex)
-                // var futureForecastTemperature = (data.list[forecastIndex].main.temp);
+                var weatherIconCode = (data.list[forecastIndex].weather[0].icon);
+                var weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
                 var futureForecastTemperature = (data.list[forecastIndex].main.temp);
                 var futureForecastWind = (data.list[forecastIndex].wind.speed);
                 var futureForecastHumidity = (data.list[forecastIndex].main.humidity);
                 var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
             
                         
-                $("#first-day").append( 
-                    dayOne +
+                $("#first-day").append(dayOne)
+                $("#weather-icon-first").attr("src", weatherIconURL)
+                $("#first-day").append(   
+                    "</br>" +
                     "</br>" + "Temp: " +
                     futureForecastTemperature + 
                     "</br>" + "Wind: " +
