@@ -9,10 +9,12 @@ body {
     width: 100%;
     height: 100%;
     line-height: 1;
+    overflow-x: hidden;
 
 }
 
 header {
+    width: 100%;
     text-align: center;
     background-color: var(--maincolor);
     color: var(--fontcolor);
@@ -65,5 +67,27 @@ span {
     border-radius: 5px;
     color: var(--fontcolor);
     font-weight: bold;
+}
+
+/* Responsive styling for screens < 998 */
+@media screen and (max-width: 998px) {
+    body {
+        width: 100%;
+    }
+}
+
+/* Responsive styling for screens < 768 */
+@media screen and (max-width: 768px) {
+    body {
+        width: 100%;
+    }
+
+}
+
+/* Responsive styling for screens < 567 */
+@media screen and (max-width: 567px) {
+    body {
+        width: 100%;
+    }
 }
 

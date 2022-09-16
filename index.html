@@ -33,7 +33,7 @@
   </head>
 
   <body>
-    <header>
+    <header class="col-lg-12">
         <h1 class="title">WEATHER DASHBOARD</h1>
     </header>
 
@@ -50,7 +50,7 @@
 
       <!-- Container holding the current day city results -->
       <container class="current-day-result">
-      <div class="row col-lg-10" id="current-day-result">
+      <div class="row col-lg-10" id="current-day-result" style="display: none;">
         <h2 id="results-display"></h2>
         <img id="weather-icon">
         <span id="temperature"></span>
@@ -70,13 +70,13 @@
 
     <!-- Container holding the 5 day results -->
     <container class="five-day-result">
-      <div class="row col-lg-10" id="five-day-result">
+      <div class="row col-lg-10" id="five-day-result" style="display: none;">
         <h2 id="five-day-result-display"></h2>
         <div class="col five-day" id="first-day" style="padding: 2%"><img id="weather-icon-first"></div>
-        <div class="col five-day" id="second-day" style="padding: 2%"></div>
-        <div class="col five-day" id="third-day" style="padding: 2%"></div>
-        <div class="col five-day" id="fourth-day" style="padding: 2%"></div>
-        <div class="col five-day" id="fifth-day" style="padding: 2%"></div>
+        <div class="col five-day" id="second-day" style="padding: 2%"><img id="weather-icon-second"></div>
+        <div class="col five-day" id="third-day" style="padding: 2%"><img id="weather-icon-third"></div>
+        <div class="col five-day" id="fourth-day" style="padding: 2%"><img id="weather-icon-fourth"></div>
+        <div class="col five-day" id="fifth-day" style="padding: 2%"><img id="weather-icon-fifth"></div>
       </div>
     </container> 
   
