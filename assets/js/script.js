@@ -73,15 +73,15 @@ function returnResultsCurrentDay() {
                     var uvIndex = data.value;
                     $(uvIndexResult).append("UV Index: " + uvIndex);
                     if (uvIndex < 3) {
-                        $(uvIndexResult).css("background-color", "green");
+                        $(uvIndexResult).css({"background-color": "green", "color": "#EFEFEF"});
                     } else if (uvIndex === 3 || uvIndex < 6) {
                         $(uvIndexResult).css("background-color", "yellow");
                     } else if (uvIndex === 6 || uvIndex < 8) {
-                        $(uvIndexResult).css("background-color", "orange");
+                        $(uvIndexResult).css({"background-color": "orange", "color": "#EFEFEF"});
                     } else if (uvIndex === 8 || uvIndex < 11) {
-                        $(uvIndexResult).css("background-color", "red");
+                        $(uvIndexResult).css({"background-color": "red", "color": "#EFEFEF"});
                     } else if (uvIndex === 11 || uvIndex > 11) {
-                        $(uvIndexResult).css("background-color", "purple");
+                        $(uvIndexResult).css({"background-color": "purple", "color": "#EFEFEF"});
                     }
                 })
 
