@@ -59,17 +59,17 @@ function returnResultsCurrentDay () {
             $("#humidity").append("Humidity: " + humidity + "%");
             $("#uv-index").append("UV Index: " + uvIndex);
 
-            // var longitude = data.coord.lon;
-            // var latitude = data.coord.lat;
+            var longitude = data.coord.lon;
+            var latitude = data.coord.lat;
 
-            // var uvIndexURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lon=" + longitude + "&lat=" + latitude + APIKey +"&cnt=1";
-            // fetch(uvIndexURL)
-            //     .then(function (response) {
-            //         return response.json();
-            //     })
-            //     .then(function (data) {
-            //         console.log(data);
-            //     })
+            var uvIndexURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" +  APIKey + "&exclude=minutely,hourly";
+            fetch(uvIndexURL)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log(data);
+                })
 
         })
 }
