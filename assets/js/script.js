@@ -59,7 +59,7 @@ function returnResultsCurrentDay() {
             $("#wind").append("Wind: " + wind + " km/h");
             $("#humidity").append("Humidity: " + humidity + "%");
 
-
+            var uvIndexResult = document.querySelector("#uv-index");
             var longitude = data.coord.lon;
             var latitude = data.coord.lat;
 
@@ -71,7 +71,12 @@ function returnResultsCurrentDay() {
                 .then(function (data) {
                     console.log(data);
                     var uvIndex = data.value;
-                    $("#uv-index").append("UV Index: " + uvIndex);
+                    $(uvIndexResult).append("UV Index: " + uvIndex);
+                        if (uvIndex < 3) {
+                            $(uvIndexResult).css("background-color", "green");
+                        } else if (uvIndex === 3 || uvIndex < 6) {
+                            $(uvIndexResult).css("background-color", "yellow");
+                        }
                 })
 
         })
@@ -119,7 +124,7 @@ function returnResultsFiveDay() {
 
 
                 $("#first-day").append(dayOne);
-                $("#weather-icon-first").attr("src", weatherIconURL);
+                $("#weather-icon-first").html("<img src=" + weatherIconURL + ">");
                 $("#first-day").append(
                     "<br>" + "<br>" + "Temp: " +
                     futureForecastTemperature +
