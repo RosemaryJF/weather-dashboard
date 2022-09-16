@@ -59,7 +59,8 @@ function returnResultsCurrentDay() {
             $("#wind").append("Wind: " + wind + " km/h");
             $("#humidity").append("Humidity: " + humidity + "%");
 
-            var uvIndexResult = document.querySelector("#uv-index");
+            var uvIndexTitle = document.querySelector("#uv-index");
+            var uvIndexResult = document.querySelector("#uvIndexResult");
             var longitude = data.coord.lon;
             var latitude = data.coord.lat;
 
@@ -71,7 +72,8 @@ function returnResultsCurrentDay() {
                 .then(function (data) {
                     console.log(data);
                     var uvIndex = data.value;
-                    $(uvIndexResult).append("UV Index: " + uvIndex);
+                    $(uvIndexTitle).append("UV Index: ")
+                    $(uvIndexResult).append(uvIndex);
                     if (uvIndex < 3) {
                         $(uvIndexResult).css({"background-color": "green", "color": "#EFEFEF"});
                     } else if (uvIndex === 3 || uvIndex < 6) {
@@ -129,8 +131,8 @@ function returnResultsFiveDay() {
                 var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
 
 
-                $("#first-day").append(dayOne);
-                $("#first-day").html('<img src=', weatherIconURL, '>');
+                $("#first-day").prepend(dayOne);
+                $("#weatherIcon").attr("src", weatherIconURL);
                 $("#first-day").append(
                     "<br>" + "<br>" + "Temp: " +
                     futureForecastTemperature +
@@ -147,9 +149,9 @@ function returnResultsFiveDay() {
                 futureForecastWind = (data.list[forecastIndex].wind.speed);
                 futureForecastHumidity = (data.list[forecastIndex].main.humidity);
 
-                $("#weather-icon-first").attr("src", weatherIconURL);
+                $("#weather-icon-second").attr("src", weatherIconURL);
                 $("#second-day").append(
-                    "<br>" + "<br>" + "Temp: " +
+                    "<br>" + "Temp: " +
                     futureForecastTemperature +
                     "<br>" + "<br>" + "Wind: " +
                     futureForecastWind +
@@ -163,9 +165,9 @@ function returnResultsFiveDay() {
                 futureForecastWind = (data.list[forecastIndex].wind.speed);
                 futureForecastHumidity = (data.list[forecastIndex].main.humidity);
 
-                $("#weather-icon-first").attr("src", weatherIconURL);
+                $("#weather-icon-third").attr("src", weatherIconURL);
                 $("#third-day").append(
-                    "<br>" + "<br>" + "Temp: " +
+                    "<br>" + "Temp: " +
                     futureForecastTemperature +
                     "<br>" + "<br>" + "Wind: " +
                     futureForecastWind +
@@ -179,9 +181,9 @@ function returnResultsFiveDay() {
                 futureForecastWind = (data.list[forecastIndex].wind.speed);
                 futureForecastHumidity = (data.list[forecastIndex].main.humidity);
 
-                $("#weather-icon-first").attr("src", weatherIconURL);
+                $("#weather-icon-fourth").attr("src", weatherIconURL);
                 $("#fourth-day").append(
-                    "<br>" + "<br>" + "Temp: " +
+                    "<br>" + "Temp: " +
                     futureForecastTemperature +
                     "<br>" + "<br>" + "Wind: " +
                     futureForecastWind +
@@ -195,9 +197,9 @@ function returnResultsFiveDay() {
                 futureForecastWind = (data.list[forecastIndex].wind.speed);
                 futureForecastHumidity = (data.list[forecastIndex].main.humidity);
 
-                $("#weather-icon-first").attr("src", weatherIconURL);
+                $("#weather-icon-fifth").attr("src", weatherIconURL);
                 $("#fifth-day").append(
-                    "<br>" + "<br>" + "Temp: " +
+                    "<br>" + "Temp: " +
                     futureForecastTemperature +
                     "<br>" + "<br>" + "Wind: " +
                     futureForecastWind +

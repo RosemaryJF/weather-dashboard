@@ -9,6 +9,7 @@ body {
     width: 100%;
     height: 100%;
     line-height: 1;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     overflow-x: hidden;
 
 }
@@ -34,6 +35,7 @@ form label {
 input,
 button {
     margin-top: 10%;
+    border-radius: 10px;
 }
 
 .city-search {
@@ -42,7 +44,7 @@ button {
     width: 100rem;
 }
 
-container #current-day-result {
+#current-day-result {
     background-color: var(--shadowcolor);
     border-radius: 10px;
     margin: 5px;
@@ -54,9 +56,13 @@ span {
 }
 
 #uv-index {
-    border-radius: 10px;
-    width: 25%;
+    width: 85%;
     margin-bottom: 2%;
+}
+
+ #uvIndexResult {
+    border-radius: 5px;
+ 
 }
 
 #first-day,
@@ -66,7 +72,7 @@ span {
 #fifth-day {
     background-color: var(--secondarycolor);
     margin: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     color: var(--fontcolor);
     font-weight: bold;
 }
