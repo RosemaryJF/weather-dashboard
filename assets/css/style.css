@@ -24,7 +24,7 @@ header {
 }
 
 form {
-    width: 60rem; 
+    width: 60rem;
 }
 
 form label {
@@ -49,13 +49,16 @@ container #current-day-result {
 }
 
 span {
-    width: 65%;
+    width: 85%;
     padding: 2%;
 }
 
-/* #five-day-result {
-    margin-left: 20%;
-} */
+#uv-index {
+    border-radius: 10px;
+    width: 25%;
+    margin-bottom: 2%;
+    color: var(--fontcolor);
+}
 
 #first-day,
 #second-day,
@@ -90,4 +93,3 @@ span {
         width: 100%;
     }
 }
-

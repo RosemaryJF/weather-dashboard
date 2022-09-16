@@ -72,11 +72,17 @@ function returnResultsCurrentDay() {
                     console.log(data);
                     var uvIndex = data.value;
                     $(uvIndexResult).append("UV Index: " + uvIndex);
-                        if (uvIndex < 3) {
-                            $(uvIndexResult).css("background-color", "green");
-                        } else if (uvIndex === 3 || uvIndex < 6) {
-                            $(uvIndexResult).css("background-color", "yellow");
-                        }
+                    if (uvIndex < 3) {
+                        $(uvIndexResult).css("background-color", "green");
+                    } else if (uvIndex === 3 || uvIndex < 6) {
+                        $(uvIndexResult).css("background-color", "yellow");
+                    } else if (uvIndex === 6 || uvIndex < 8) {
+                        $(uvIndexResult).css("background-color", "orange");
+                    } else if (uvIndex === 8 || uvIndex < 11) {
+                        $(uvIndexResult).css("background-color", "red");
+                    } else if (uvIndex === 11 || uvIndex > 11) {
+                        $(uvIndexResult).css("background-color", "purple");
+                    }
                 })
 
         })
@@ -115,7 +121,7 @@ function returnResultsFiveDay() {
                 // console.log(forecastIndex)
                 var weatherIconCode = (data.list[forecastIndex].weather[0].icon);
                 console.log(weatherIconCode);
-                var weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
+                var weatherIconURL = "https://openweathermap.org/img/wn/" + weatherIconCode + ".png"
                 console.log(weatherIconURL)
                 var futureForecastTemperature = (data.list[forecastIndex].main.temp);
                 var futureForecastWind = (data.list[forecastIndex].wind.speed);
@@ -124,7 +130,7 @@ function returnResultsFiveDay() {
 
 
                 $("#first-day").append(dayOne);
-                $("#weather-icon-first").html("<img src=" + weatherIconURL + ">");
+                $("#first-day").html('<img src=', weatherIconURL, '>');
                 $("#first-day").append(
                     "<br>" + "<br>" + "Temp: " +
                     futureForecastTemperature +
@@ -132,6 +138,7 @@ function returnResultsFiveDay() {
                     futureForecastWind +
                     "<br>" + "<br>" + "Humidity: " +
                     futureForecastHumidity);
+
 
                 forecastIndex = i + 12;
                 weatherIconCode = (data.list[forecastIndex].weather[0].icon);
