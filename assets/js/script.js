@@ -21,19 +21,16 @@ function citySearch(event) {
     returnResultsCurrentDay();
     returnResultsFiveDay();
     returnFiveDayDate();
-
-    var clickCounter = 0;
-    event.onclick = function () {
-        clickCounter++;
-        if (clickCounter > 1) {
-            clearCurrentResult();
-            searchHistoryStore();
-            returnResultsCurrentDay();
-            returnResultsFiveDay();
-            returnFiveDayDate();
-        }
-    };
     return;
+};
+
+var clickCounter = 0;
+searchBtn.onclick = function (event) {
+    event.preventDefault
+    clickCounter++;
+    if (clickCounter > 2) {
+        handleSecondCityFormSubmit()
+    }
 };
 
 // Function to retrieve current day weather for user city search
@@ -116,7 +113,7 @@ function searchHistoryStore() {
     const previousCities = localStorage.getItem("City Search");
     const pastCitySearchEl = document.getElementById("search-history");
 
-    pastCitySearchEl.innerHTML = "";
+    // pastCitySearchEl.innerHTML = "";
 
     var pastCityBtn = document.createElement("button");
     pastCityBtn.classList.add("btn", "btn-block", "past-city");
@@ -258,7 +255,7 @@ function pastCityRestore(event) {
 }
 
 function clearCurrentResult() {
-    resultsDisplayEl.textContent = "";
-    fiveDayForecastEl.txtContent = "";
+    resultsDisplayEl.innerHTML = "";
+    fiveDayForecastEl.innerHTML= "";
     return;
 };
