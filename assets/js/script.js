@@ -72,7 +72,6 @@ function returnResultsCurrentDay() {
                     return response.json();
                 })
                 .then(function (data) {
-                    console.log(data);
                     var uvIndex = data.value;
                     $(uvIndexResult).append(uvIndex);
                     if (uvIndex < 3) {
@@ -141,7 +140,7 @@ function returnResultsFiveDay() {
                 console.log(weatherIconCode);
                 var weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
                 console.log(weatherIconURL)
-                $(this).attr("src", weatherIconURL);
+                $("this").attr("src", weatherIconURL);
 
                 var futureForecastTemperature = (data.list[forecastIndex].main.temp);
                 var futureForecastWind = (data.list[forecastIndex].wind.speed);
@@ -161,6 +160,7 @@ function returnResultsFiveDay() {
                 forecastIndex = i + 12;
                 weatherIconCode = (data.list[forecastIndex].weather[0].icon);
                 weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
+                console.log(weatherIconURL)
                 futureForecastTemperature = (data.list[forecastIndex].main.temp);
                 futureForecastWind = (data.list[forecastIndex].wind.speed);
                 futureForecastHumidity = (data.list[forecastIndex].main.humidity);
@@ -229,22 +229,17 @@ function returnResultsFiveDay() {
 
 // Function to clear previous city results
 function clearCurrentResult() {
-    $("#results-display").empty()
-    $("#weather-icon").empty()
-    $("#temperature").empty()
-    $("#wind").empty()
-    $("#humidity").empty()
-    $("#uvIndexResult").empty()
-    $("#first-day").empty()
-    $("#weather-icon-first").empty()
-    $("#second-day").empty()
-    $("#weather-icon-second").empty()
-    $("#third-day").empty()
-    $("#weather-icon-third").empty()
-    $("#fourth-day").empty()
-    $("#weather-icon-fourth").empty()
-    $("#fifth-day").empty()
-    $("#weather-icon-fifth").empty()
+    $("#results-display").html("");
+    $("#temperature").html("");
+    $("#wind").html("");
+    $("#humidity").html("");
+    $("#uvIndexResult").html("");
+    $("#first-day").html("");
+    $("#second-day").html("");
+    $("#third-day").html("");
+    $("#fourth-day").html("");
+    $("#fifth-day").html("");
+
 };
 
 // Function to handle a second city search after the original
@@ -256,7 +251,7 @@ function handleOtherCityFormSubmit() {
         returnResultsCurrentDay();
         returnResultsFiveDay();
         clickCounter++;
-        return;
+    return;
     };
 };
 

@@ -78,6 +78,7 @@ span {
     margin-bottom: 2%;
 }
 
+/*  */
  #uvIndexResult {
     padding: 0 1% 0.5% 1%;
     border-radius: 5px;
@@ -89,11 +90,7 @@ span {
     margin-left: 1%;
 }
 
-#first-day,
-#second-day,
-#third-day,
-#fourth-day,
-#fifth-day {
+.five-day {
     background-color: var(--secondarycolor);
     margin: 5px;
     border-radius: 10px;
