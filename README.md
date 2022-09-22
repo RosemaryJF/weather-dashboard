@@ -8,20 +8,13 @@ My Weather Dashboard application can retrieve the current and five day forecast 
 
 When the user searches a city the application uses the OpenWeather API to return the forecast results. I learnt a lot about 
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-
 ---
 
 ## Table of Contents (Optional)
 
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
 - [Installation](#installation)
 - [Usage](#usage)
-- [Features] (#Features)
+- [Features] (#features)
 - [Credits](#credits)
 - [License](#license)
 
