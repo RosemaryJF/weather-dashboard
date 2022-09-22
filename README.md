@@ -31,6 +31,8 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 Ideally you have an up to date browser. You can run the application one of two ways. The first is by visiting the deloyed application link below:
 
+https://rosemaryjf.github.io/weather-dashboard/
+
 The second is by cloning the repo using the SSH key onto your local machine and then launching it through your code editor. Please note you need to keep Bootstrap, jQuery and momentJS linked at the bottom of the HTML file for it to function as intended.
 
 ---
