@@ -1,43 +1,36 @@
-var APIKey = "f39d9467ef1aba260c6801b3458f906e";
-var APIKey2 = "50769607e08ba2d36949b3dcb81ae316"
+const APIKey = "f39d9467ef1aba260c6801b3458f906e";
+
+const searchFormEl = document.getElementById("city-search");
+const searchBtn = document.getElementById("search-btn");
+const clearResultsBtn = document.getElementById("clear-btn");
 var userCityEntry;
 
-var searchFormEl = document.getElementById("city-search");
-var resultsDisplayEl = $(".results-display")
+const resultsDisplayEl = $("#current-day-result");
+const fiveDayForecastEl = $("#five-day-result");
 
+// Event listener on search button
+searchBtn.addEventListener("click", citySearch);
 
-// $(document).ready(function(citySearch){
-function citySearch() {
-    $("form").submit(function (event) {
+// Function to show results and store search city
+function citySearch(event) {
         event.preventDefault();
-        // userCityEntry = $("#user-input").val()
-        // console.log(userCityEntry);
-        // localStorage.setItem("City Search", userCityEntry);
-
         $("#current-day-result").removeAttr("style");
         $("#five-day-result").removeAttr("style");
-        searchHistoryStore()
         returnResultsCurrentDay()
         returnResultsFiveDay()
         returnFiveDayDate()
         return
-    })
-
 }
-citySearch()
-
 
 // Function to retrieve current day weather for user city search
 function returnResultsCurrentDay() {
     userCityEntry = $("#user-input").val()
+    searchHistoryStore()
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric";
-    // &temperature.value=&wind.speed=&humidity.value=&current.uvi="
 
     fetch(queryURL)
         .then(function (response) {
-            // if (!response.ok) {
             return response.json();
-            // }
         })
 
         .then(function (data) {
@@ -59,11 +52,10 @@ function returnResultsCurrentDay() {
             $("#wind").append("Wind: " + wind + " km/h");
             $("#humidity").append("Humidity: " + humidity + "%");
 
-            // var uvIndexTitle = document.querySelector("#uv-index");
+            // Fetch request to return UV Index result and give it background colour
             var uvIndexResult = document.querySelector("#uvIndexResult");
             var longitude = data.coord.lon;
             var latitude = data.coord.lat;
-
             var uvIndexURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey;
             fetch(uvIndexURL)
                 .then(function (response) {
@@ -72,7 +64,6 @@ function returnResultsCurrentDay() {
                 .then(function (data) {
                     console.log(data);
                     var uvIndex = data.value;
-                    // $(uvIndexTitle).append("UV Index: ")
                     $(uvIndexResult).append(uvIndex);
                     if (uvIndex < 3) {
                         $(uvIndexResult).css({ "background-color": "green", "color": "#EFEFEF", "font-weight": "bold" });
@@ -105,52 +96,51 @@ function returnFiveDayDate() {
     $("#fifth-day").prepend(dayFive);
 }
 
+function clearCurrentResult () {
+    resultsDisplayEl.textContent = "";
+    fiveDayForecastEl.txtContent = "";
+    return;
+}
 
-// Function to store search history
+// Function to display city searched history as buttons
 function searchHistoryStore() {
     userCityEntry = $("#user-input").val()
     console.log(userCityEntry);
     localStorage.setItem("City Search", userCityEntry);
-    const previousCity = localStorage.getItem("City Search");
+    const previousCities = localStorage.getItem("City Search");
+    const pastCitySearchEl = document.getElementById("search-history");
 
-    const searchHistoryEl = document.body.createElement("div")
-    const previousCityEl = document.body.createElement("span");
+    pastCitySearchEl.innerHTML ="";
+        
+        var pastCityBtn = document.createElement("button");
+        pastCityBtn.classList.add("btn", "btn-block", "past-city");
+        pastCityBtn.setAttribute("style", "background-color: #C0A080");
+        pastCityBtn.textContent = previousCities;
+        pastCitySearchEl.appendChild(pastCityBtn);
+        return;
+}
+ 
+// Function to store search history
+// function searchHistoryStore() {
+//     userCityEntry = $("#user-input").val()
+//     console.log(userCityEntry);
+//     localStorage.setItem("City Search", userCityEntry);
+//     const previousCity = localStorage.getItem("City Search");
 
-    searchHistoryEl.textContent("Previous City")
-    previousCityEl.textContent(previousCity)
+//     // const searchHistoryEl = document.body.createElement("div")
+//     const previousCityEl = document.body.createElement("span");
 
-    body.appendChild(searchHistoryEl)
-    searchHistoryEl.appendChild(previousCityEl)
+//     searchHistoryEl.textContent("Previous City")
+//     previousCityEl.textContent(previousCity)
+
+//     body.appendChild(searchHistoryEl)
+//     searchHistoryEl.appendChild(previousCityEl)
 
     // searchHistoryEl.document.appendChild(previousCityEl)
     // previousCityEl.document.append(previousCity)
     // searchHistoryEl.append(previousCityEl)
     // previousCityEl.append(previousCity)
-
-
-    // function addElement() {
-    //     // create a new div element
-    //     const newSpan = document.createElement("span");
-
-    //     // and give it some content
-    //     const newContent = document.createTextNode(previousCity);
-
-    //     // add the text node to the newly created div
-    //     newSpan.appendChild(newContent);
-
-    //     // add the newly created element and its content into the DOM
-    //     const currentDiv = document.getElementById("search-history");
-    //     document.insertAfter(newSpan, currentDiv);
-    // }
-
-    // addElement()
-    // document.getElementsByClassName("previousCity").value = previousCity;
-
-    // $("div #search-history").add("span").addClass("previousCity");
-    // $(".prevousCity").attr(previousCity)
-    // .css({"background-color": "#D1D1D1", "color": "#000000"});
-    // $("#previous-search").attr(userCityEntry);
-}
+// }
 
 // Function to return 5 day weather result for currently searched city
 function returnResultsFiveDay() {

@@ -38,14 +38,19 @@ button {
     border-radius: 10px;
 }
 
-.city-search {
+.city-search,
+.previous-city {
     margin-left: 2%;
     justify-content: left;
-    width: 100rem;
+}
+
+.past-city {
+    background-color: var(--secondarycolor);
+    color: var(--fontcolor);
+    font-weight: bold;
 }
 
 #current-day-result {
-    width: 56.5rem;
     background-color: var(--shadowcolor);
     border-radius: 10px;
     margin: 5px;
@@ -68,24 +73,20 @@ span {
  
 }
 
-
-
 #five-day-result-display {
     width: 100%;
     margin-left: 1%;
 }
 
-#five-day-result {
+/* #five-day-result {
     margin-left: 25%;
-    /* justify-content: right; */
-}
+} */
 
 #first-day,
 #second-day,
 #third-day,
 #fourth-day,
 #fifth-day {
-    width: 15%;
     background-color: var(--secondarycolor);
     margin: 5px;
     border-radius: 10px;

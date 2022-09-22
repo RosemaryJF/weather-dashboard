@@ -13,7 +13,6 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/css/style.css" />
 
   <title>Weather Dashboard</title>
@@ -21,57 +20,79 @@
 </head>
 
 <body>
+
+  <!-- Header element -->
   <header class="row-lg-12">
     <h1 class="title">WEATHER DASHBOARD</h1>
   </header>
 
-  <!-- Form containing all the search elements -->
-  <form class="city-search" id="city-search">
-    <div class="form-group row">
-      <div class="col-lg-2">
+  <!-- Div for Bootstrap Grid system -->
+  <div class="row">
+    
+    <!-- Form containing all the search elements -->
+    <form class="col-3 city-search" id="city-search">
+      <div class="form-group">
         <label for="city-search-form">Search for a City:</label>
         <input type="text" class="form-control" id="user-input" placeholder="Hobart">
         <button type="submit" class="btn btn-block" id="search-btn"
           style="background-color: #C0A080; color: #EFEFEF; font-weight: bold">Search</button>
-        <button type="submit" class="btn btn-block" id="clear-btn"
-          style="background-color: #C0A080; color: #EFEFEF; font-weight: bold">Clear Search</button>
       </div>
-  </form>
+    </form>
 
-  <!-- Container holding the current day city results -->
-  <container class="current-day-result">
-    <div class="row col-lg-10" id="current-day-result" style="display: none;">
-      <h2 id="results-display"></h2>
-      <img id="weather-icon">
-      <span id="temperature"></span>
-      <span id="wind"></span>
-      <span id="humidity"></span>
-      <div id="uv-index">UV Index: <span id="uvIndexResult"></span></div>
-    </div>
-    </div>
-  </container>
-
-  <!-- Container holding previous search results -->
-  <container class="previous-search" id="previous-search">
-    <div class="row">
-      <!-- <div class="col-lg-2 previous-city" id="search-history"> -->
-      <div class="col-lg-2">
+    <!-- Container holding the current day city results -->
+    <container class="col-8 current-day-result">
+      <div class="row col-9" id="current-day-result" style="display: none;">
+        <h2 id="results-display"></h2>
+        <img id="weather-icon">
+        <span id="temperature"></span>
+        <span id="wind"></span>
+        <span id="humidity"></span>
+        <div id="uv-index">UV Index: 
+          <span id="uvIndexResult"></span>
+        </div>
       </div>
-    </div>
-  </container>
+    </container>
 
-  <!-- Container holding the 5 day results -->
-  <container class="five-day-result">
-    <div class="row col-lg-9" id="five-day-result" style="display: none;">
-      <h3 id="five-day-result-display">5-Day Forecast:</h3>
-      <div class="col five-day" id="first-day" style="padding: 2%"><img id="weather-icon-first" src=""></div>
-      <div class="col five-day" id="second-day" style="padding: 2%"><img id="weather-icon-second"></div>
-      <div class="col five-day" id="third-day" style="padding: 2%"><img id="weather-icon-third"></div>
-      <div class="col five-day" id="fourth-day" style="padding: 2%"><img id="weather-icon-fourth"></div>
-      <div class="col five-day" id="fifth-day" style="padding: 2%"><img id="weather-icon-fifth"></div>
-    </div>
-  </container>
+    <!-- Div holding previous search results -->
+    <container class="col-3 previous-city" style="margin-right: 0;">
+      <div class="previous-search" id="previous-search">
+        <div id="search-history">
+        </div>
+      </div>
+    </container>
 
+    <!-- Container holding the 5 day forecast results -->
+    <container class="col-8 five-day-result">
+      <div class="row col" id="five-day-result" style="display: none;">
+        <h3 id="five-day-result-display">5-Day Forecast:</h3>
+        <!-- Day one -->
+        <div class="col-2 five-day" id="first-day" style="padding: 2%">
+          <img id="weather-icon-first" src="">
+        </div>
+
+        <!-- Day two -->
+        <div class="col-2 five-day" id="second-day" style="padding: 2%">
+          <img id="weather-icon-second">
+        </div>
+
+        <!-- Day three -->
+        <div class="col-2 five-day" id="third-day" style="padding: 2%">
+          <img id="weather-icon-third">
+        </div>
+
+        <!-- Day four -->
+        <div class="col-2 five-day" id="fourth-day" style="padding: 2%">
+          <img id="weather-icon-fourth">
+        </div>
+
+        <!-- Day five -->
+        <div class="col-2 five-day" id="fifth-day" style="padding: 2%">
+          <img id="weather-icon-fifth">
+        </div>
+      </div>
+    </container>
+
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
