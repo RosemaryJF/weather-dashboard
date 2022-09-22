@@ -2,32 +2,44 @@ const APIKey = "f39d9467ef1aba260c6801b3458f906e";
 
 const searchFormEl = document.getElementById("city-search");
 const searchBtn = document.getElementById("search-btn");
-const clearResultsBtn = document.getElementById("clear-btn");
+
 var userCityEntry;
 
 const resultsDisplayEl = $("#current-day-result");
+
 const fiveDayForecastEl = $("#five-day-result");
 
 // Event listener on search button
 searchBtn.addEventListener("click", citySearch);
 
-// Function to show results and store search city
+// Function to show current day and five day forecast results
 function citySearch(event) {
-        event.preventDefault();
-        $("#current-day-result").removeAttr("style");
-        $("#five-day-result").removeAttr("style");
-        returnResultsCurrentDay()
-        returnResultsFiveDay()
-        returnFiveDayDate()
-        return
-}
+    event.preventDefault();
+    $("#current-day-result").removeAttr("style");
+    $("#five-day-result").removeAttr("style");
+    searchHistoryStore();
+    returnResultsCurrentDay();
+    returnResultsFiveDay();
+    returnFiveDayDate();
+
+    var clickCounter = 0;
+    event.onclick = function () {
+        clickCounter++;
+        if (clickCounter > 1) {
+            clearCurrentResult();
+            searchHistoryStore();
+            returnResultsCurrentDay();
+            returnResultsFiveDay();
+            returnFiveDayDate();
+        }
+    };
+    return;
+};
 
 // Function to retrieve current day weather for user city search
 function returnResultsCurrentDay() {
-    userCityEntry = $("#user-input").val()
-    searchHistoryStore()
+    userCityEntry = $("#user-input").val();
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric";
-
     fetch(queryURL)
         .then(function (response) {
             return response.json();
@@ -79,7 +91,7 @@ function returnResultsCurrentDay() {
                 })
 
         })
-}
+};
 
 // Function to generate 5 dates from current day using moment
 function returnFiveDayDate() {
@@ -94,13 +106,7 @@ function returnFiveDayDate() {
     $("#third-day").prepend(dayThree);
     $("#fourth-day").prepend(dayFour);
     $("#fifth-day").prepend(dayFive);
-}
-
-function clearCurrentResult () {
-    resultsDisplayEl.textContent = "";
-    fiveDayForecastEl.txtContent = "";
-    return;
-}
+};
 
 // Function to display city searched history as buttons
 function searchHistoryStore() {
@@ -110,37 +116,15 @@ function searchHistoryStore() {
     const previousCities = localStorage.getItem("City Search");
     const pastCitySearchEl = document.getElementById("search-history");
 
-    pastCitySearchEl.innerHTML ="";
-        
-        var pastCityBtn = document.createElement("button");
-        pastCityBtn.classList.add("btn", "btn-block", "past-city");
-        pastCityBtn.setAttribute("style", "background-color: #C0A080");
-        pastCityBtn.textContent = previousCities;
-        pastCitySearchEl.appendChild(pastCityBtn);
-        return;
-}
- 
-// Function to store search history
-// function searchHistoryStore() {
-//     userCityEntry = $("#user-input").val()
-//     console.log(userCityEntry);
-//     localStorage.setItem("City Search", userCityEntry);
-//     const previousCity = localStorage.getItem("City Search");
+    pastCitySearchEl.innerHTML = "";
 
-//     // const searchHistoryEl = document.body.createElement("div")
-//     const previousCityEl = document.body.createElement("span");
-
-//     searchHistoryEl.textContent("Previous City")
-//     previousCityEl.textContent(previousCity)
-
-//     body.appendChild(searchHistoryEl)
-//     searchHistoryEl.appendChild(previousCityEl)
-
-    // searchHistoryEl.document.appendChild(previousCityEl)
-    // previousCityEl.document.append(previousCity)
-    // searchHistoryEl.append(previousCityEl)
-    // previousCityEl.append(previousCity)
-// }
+    var pastCityBtn = document.createElement("button");
+    pastCityBtn.classList.add("btn", "btn-block", "past-city");
+    pastCityBtn.setAttribute("style", "background-color: #C0A080");
+    pastCityBtn.textContent = previousCities;
+    pastCitySearchEl.appendChild(pastCityBtn);
+    return;
+};
 
 // Function to return 5 day weather result for currently searched city
 function returnResultsFiveDay() {
@@ -245,5 +229,36 @@ function returnResultsFiveDay() {
                 return
             }
         })
+};
+
+function handleSecondCityFormSubmit(event) {
+    event.preventDefault();
+    userCityEntry = $("#user-input").val();
+
+    clearCurrentResult();
+    returnResultsCurrentDay();
+    returnResultsFiveDay();
+    returnFiveDayDate();
+    return;
+};
+
+// Function restore previously searched city
+function pastCityRestore(event) {
+    var pastCityBtn = event.target;
+    event.preventDefault()
+
+    if (pastCityBtn.matches(".past-city")) {
+        userCityEntry = pastCityBtn.textContent;
+
+        clearCurrentResult();
+        returnResultsCurrentDay();
+        returnResultsFiveDay();
+        returnFiveDayDate();
+    }
 }
 
+function clearCurrentResult() {
+    resultsDisplayEl.textContent = "";
+    fiveDayForecastEl.txtContent = "";
+    return;
+};
