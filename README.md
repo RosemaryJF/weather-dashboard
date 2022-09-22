@@ -21,6 +21,7 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Features] (#Features)
 - [Credits](#credits)
 - [License](#license)
 
@@ -36,7 +37,17 @@ The second is by cloning the repo using the SSH key onto your local machine and 
 
 ## Usage
 
+On the landing page the user is met with a mainly empty page due to the results containers being hidden. The user enters a city in the input area and hits the "Search this City" button. They are then presented with the current day result and five day forecast for the city they have searched. The city is appended to a button so they can re-click and load the results if needed (this is still very buggy on loading, will be debugged at a late date due to time constraints). 
 
+---
+
+## Features
+
+One feature of the weather dashboard is the appending of a weather icon to the five day forecasts, and current forecast so the user can get an idea of the weather at a glance. Note the icon for the first day result out of the five days does not appear due to a weird bug.  Have tried a lot of work arounds but for MVP had to let it go unquashed! To be worked on in future updates but had to comment it out of the HTML due to it breaking the rest of the div....
+
+Second feature is the background of the UV index result background is coloured to align with the okay, not okay, very not okay levels of UV bearing down on peeps skin.
+
+A third feature is the ability to click on a previously searched city and revisit that result. Although this feature is still buggy and needs to be edited before it functions properly.
 
 ---
 
@@ -50,6 +61,7 @@ https://api.jquery.com/ (for soooooo many bits and bobs)
 https://getbootstrap.com/docs
 https://momentjs.com/docs/
 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+https://stackoverflow.com/questions/53384254/click-not-registering
 https://www.kindpng.com/free/weather-icon/#google_vignette (for the favicon base design)
 
 There's definitely some I missed... 
@@ -61,11 +73,3 @@ There's definitely some I missed...
 This application has a standard MIT License which can be viewed here: https://github.com/RosemaryJF/weather-dashboard/blob/main/assets/LICENSE
 
 ---
-
-## Features
-
-One feature of the weather dashboard is the appending of a weather icon to the five day forecasts, and current forecast so the user can get an idea of the weather at a glance. Note the icon for the first day result out of the five days does not appear due to a weird bug. Have tried a lot of work arounds but for MVP had to let it go unquashed! To be worked on in future updates.
-
-Second feature is the background of the UV index result background is coloured to align with the okay, not okay, very not okay levels of UV bearing down on peeps skin.
-
-A third feature is the ability to click on a previously searched city and revisit that result. Although this feature is still buggy and needs to be edited before it functions properly.

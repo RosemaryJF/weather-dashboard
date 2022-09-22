@@ -22,6 +22,7 @@ function citySearch(event) {
     returnResultsCurrentDay();
     returnResultsFiveDay();
     returnFiveDayDate();
+    pastCityRestore()
     clickCounter++;
     return;
 };
@@ -113,12 +114,14 @@ function searchHistoryStore() {
     const previousCities = localStorage.getItem("City Search");
     const pastCitySearchEl = document.getElementById("search-history");
 
-    var pastCityBtn = document.createElement("button");
-    pastCityBtn.classList.add("btn", "btn-block", "past-city");
+    let pastCityBtn = document.createElement("button");
+    pastCityBtn.type = "submit";
+    pastCityBtn.classList.add("btn", "btn-block", "past-city",);
+    pastCityBtn.id = userCityEntry
     pastCityBtn.setAttribute("style", "background-color: #C0A080");
     pastCityBtn.textContent = previousCities;
     pastCitySearchEl.appendChild(pastCityBtn);
-    return;
+    
 };
 
 // Function to return 5 day weather result for currently searched city
@@ -139,7 +142,6 @@ function returnResultsFiveDay() {
                 var weatherIconCode = (data.list[forecastIndex].weather[0].icon);
                 console.log(weatherIconCode);
                 var weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
-                console.log(weatherIconURL)
                 $("this").attr("src", weatherIconURL);
 
                 var futureForecastTemperature = (data.list[forecastIndex].main.temp);
@@ -160,7 +162,6 @@ function returnResultsFiveDay() {
                 forecastIndex = i + 12;
                 weatherIconCode = (data.list[forecastIndex].weather[0].icon);
                 weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
-                console.log(weatherIconURL)
                 futureForecastTemperature = (data.list[forecastIndex].main.temp);
                 futureForecastWind = (data.list[forecastIndex].wind.speed);
                 futureForecastHumidity = (data.list[forecastIndex].main.humidity);
@@ -255,22 +256,22 @@ function handleOtherCityFormSubmit() {
     };
 };
 
-
-// Function restore previously searched city
-function pastCityRestore(event) {
-    var pastCityBtn = event.target("click");
-    event.preventDefault()
-
-    if (pastCityBtn.matches(".past-city")) {
-        userCityEntry = pastCityBtn.textContent;
-
+// Function to restore previously searched city result - very buggy still but ran out of time
+function pastCityRestore() {
+    const pastCityBtn = document.getElementsByClassName("past-city");
+    $(pastCityBtn).on("click", pastCityBtn, function() {
+        console.log("Clicked")
+    
         clearCurrentResult();
-        searchHistoryStore();
         returnResultsCurrentDay();
         returnResultsFiveDay();
-    };
-    pastCityBtn.on("click", pastCityRestore);
+        return;
+    })
 };
+
+
+
+
 
 
 
