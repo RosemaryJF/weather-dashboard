@@ -45,6 +45,7 @@ button {
 }
 
 #current-day-result {
+    width: 56.5rem;
     background-color: var(--shadowcolor);
     border-radius: 10px;
     margin: 5px;
@@ -57,12 +58,26 @@ span {
 
 #uv-index {
     width: 85%;
+    padding: 2%;
     margin-bottom: 2%;
 }
 
  #uvIndexResult {
+    padding: 0 1% 0.5% 1%;
     border-radius: 5px;
  
+}
+
+
+
+#five-day-result-display {
+    width: 100%;
+    margin-left: 1%;
+}
+
+#five-day-result {
+    margin-left: 25%;
+    /* justify-content: right; */
 }
 
 #first-day,
@@ -70,6 +85,7 @@ span {
 #third-day,
 #fourth-day,
 #fifth-day {
+    width: 15%;
     background-color: var(--secondarycolor);
     margin: 5px;
     border-radius: 10px;

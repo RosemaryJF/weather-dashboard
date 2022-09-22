@@ -46,7 +46,7 @@
       <span id="temperature"></span>
       <span id="wind"></span>
       <span id="humidity"></span>
-      <div id="uv-index"><span id="uvIndexResult"></span></div>
+      <div id="uv-index">UV Index: <span id="uvIndexResult"></span></div>
     </div>
     </div>
   </container>
@@ -54,15 +54,17 @@
   <!-- Container holding previous search results -->
   <container class="previous-search" id="previous-search">
     <div class="row">
-      <div class="col-lg-2" id="search-history"></div>
+      <!-- <div class="col-lg-2 previous-city" id="search-history"> -->
+      <div class="col-lg-2">
+      </div>
     </div>
   </container>
 
   <!-- Container holding the 5 day results -->
   <container class="five-day-result">
-    <div class="row col-lg-10" id="five-day-result" style="display: none;">
-      <h2 id="five-day-result-display"></h2>
-      <div class="col five-day" id="first-day" style="padding: 2%"><img id="weatherIcon"></div>
+    <div class="row col-lg-9" id="five-day-result" style="display: none;">
+      <h3 id="five-day-result-display">5-Day Forecast:</h3>
+      <div class="col five-day" id="first-day" style="padding: 2%"><img id="weather-icon-first" src=""></div>
       <div class="col five-day" id="second-day" style="padding: 2%"><img id="weather-icon-second"></div>
       <div class="col five-day" id="third-day" style="padding: 2%"><img id="weather-icon-third"></div>
       <div class="col five-day" id="fourth-day" style="padding: 2%"><img id="weather-icon-fourth"></div>

@@ -10,16 +10,16 @@ var resultsDisplayEl = $(".results-display")
 function citySearch() {
     $("form").submit(function (event) {
         event.preventDefault();
-        userCityEntry = $("#user-input").val()
-        console.log(userCityEntry);
-        localStorage.setItem("City Search", userCityEntry);
+        // userCityEntry = $("#user-input").val()
+        // console.log(userCityEntry);
+        // localStorage.setItem("City Search", userCityEntry);
 
         $("#current-day-result").removeAttr("style");
         $("#five-day-result").removeAttr("style");
+        searchHistoryStore()
         returnResultsCurrentDay()
         returnResultsFiveDay()
         returnFiveDayDate()
-        $("#search-history").text(userCityEntry);
         return
     })
 
@@ -59,7 +59,7 @@ function returnResultsCurrentDay() {
             $("#wind").append("Wind: " + wind + " km/h");
             $("#humidity").append("Humidity: " + humidity + "%");
 
-            var uvIndexTitle = document.querySelector("#uv-index");
+            // var uvIndexTitle = document.querySelector("#uv-index");
             var uvIndexResult = document.querySelector("#uvIndexResult");
             var longitude = data.coord.lon;
             var latitude = data.coord.lat;
@@ -72,18 +72,18 @@ function returnResultsCurrentDay() {
                 .then(function (data) {
                     console.log(data);
                     var uvIndex = data.value;
-                    $(uvIndexTitle).append("UV Index: ")
+                    // $(uvIndexTitle).append("UV Index: ")
                     $(uvIndexResult).append(uvIndex);
                     if (uvIndex < 3) {
-                        $(uvIndexResult).css({"background-color": "green", "color": "#EFEFEF"});
+                        $(uvIndexResult).css({ "background-color": "green", "color": "#EFEFEF", "font-weight": "bold" });
                     } else if (uvIndex === 3 || uvIndex < 6) {
-                        $(uvIndexResult).css("background-color", "yellow");
+                        $(uvIndexResult).css({ "background-color": "yellow", "font-weight": "bold" });
                     } else if (uvIndex === 6 || uvIndex < 8) {
-                        $(uvIndexResult).css({"background-color": "orange", "color": "#EFEFEF"});
+                        $(uvIndexResult).css({ "background-color": "orange", "color": "#EFEFEF", "font-weight": "bold" });
                     } else if (uvIndex === 8 || uvIndex < 11) {
-                        $(uvIndexResult).css({"background-color": "red", "color": "#EFEFEF"});
+                        $(uvIndexResult).css({ "background-color": "red", "color": "#EFEFEF", "font-weight": "bold" });
                     } else if (uvIndex === 11 || uvIndex > 11) {
-                        $(uvIndexResult).css({"background-color": "purple", "color": "#EFEFEF"});
+                        $(uvIndexResult).css({ "background-color": "purple", "color": "#EFEFEF", "font-weight": "bold" });
                     }
                 })
 
@@ -92,13 +92,13 @@ function returnResultsCurrentDay() {
 
 // Function to generate 5 dates from current day using moment
 function returnFiveDayDate() {
-    // var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
+    var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
     var dayTwo = moment().add(2, "days").format("DD/MM/YYYY");
     var dayThree = moment().add(3, "days").format("DD/MM/YYYY");
     var dayFour = moment().add(4, "days").format("DD/MM/YYYY");
     var dayFive = moment().add(5, "days").format("DD/MM/YYYY");
 
-    // $("#first-day").prepend(dayOne);
+    $("#first-day").prepend(dayOne);
     $("#second-day").prepend(dayTwo);
     $("#third-day").prepend(dayThree);
     $("#fourth-day").prepend(dayFour);
@@ -106,6 +106,53 @@ function returnFiveDayDate() {
 }
 
 
+// Function to store search history
+function searchHistoryStore() {
+    userCityEntry = $("#user-input").val()
+    console.log(userCityEntry);
+    localStorage.setItem("City Search", userCityEntry);
+    const previousCity = localStorage.getItem("City Search");
+
+    const searchHistoryEl = document.body.createElement("div")
+    const previousCityEl = document.body.createElement("span");
+
+    searchHistoryEl.textContent("Previous City")
+    previousCityEl.textContent(previousCity)
+
+    body.appendChild(searchHistoryEl)
+    searchHistoryEl.appendChild(previousCityEl)
+
+    // searchHistoryEl.document.appendChild(previousCityEl)
+    // previousCityEl.document.append(previousCity)
+    // searchHistoryEl.append(previousCityEl)
+    // previousCityEl.append(previousCity)
+
+
+    // function addElement() {
+    //     // create a new div element
+    //     const newSpan = document.createElement("span");
+
+    //     // and give it some content
+    //     const newContent = document.createTextNode(previousCity);
+
+    //     // add the text node to the newly created div
+    //     newSpan.appendChild(newContent);
+
+    //     // add the newly created element and its content into the DOM
+    //     const currentDiv = document.getElementById("search-history");
+    //     document.insertAfter(newSpan, currentDiv);
+    // }
+
+    // addElement()
+    // document.getElementsByClassName("previousCity").value = previousCity;
+
+    // $("div #search-history").add("span").addClass("previousCity");
+    // $(".prevousCity").attr(previousCity)
+    // .css({"background-color": "#D1D1D1", "color": "#000000"});
+    // $("#previous-search").attr(userCityEntry);
+}
+
+// Function to return 5 day weather result for currently searched city
 function returnResultsFiveDay() {
     userCityEntry = $("#user-input").val()
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCityEntry + "&appid=" + APIKey + "&units=metric";
@@ -123,16 +170,16 @@ function returnResultsFiveDay() {
                 // console.log(forecastIndex)
                 var weatherIconCode = (data.list[forecastIndex].weather[0].icon);
                 console.log(weatherIconCode);
-                var weatherIconURL = "https://openweathermap.org/img/wn/" + weatherIconCode + ".png"
+                var weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
                 console.log(weatherIconURL)
+                $(this).attr("src", weatherIconURL);
+
                 var futureForecastTemperature = (data.list[forecastIndex].main.temp);
                 var futureForecastWind = (data.list[forecastIndex].wind.speed);
                 var futureForecastHumidity = (data.list[forecastIndex].main.humidity);
                 var dayOne = moment().add(1, "day").format("DD/MM/YYYY");
 
-
                 $("#first-day").prepend(dayOne);
-                $("#weatherIcon").attr("src", weatherIconURL);
                 $("#first-day").append(
                     "<br>" + "<br>" + "Temp: " +
                     futureForecastTemperature +
