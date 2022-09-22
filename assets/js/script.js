@@ -113,8 +113,6 @@ function searchHistoryStore() {
     const previousCities = localStorage.getItem("City Search");
     const pastCitySearchEl = document.getElementById("search-history");
 
-    // pastCitySearchEl.innerHTML = "";
-
     var pastCityBtn = document.createElement("button");
     pastCityBtn.classList.add("btn", "btn-block", "past-city");
     pastCityBtn.setAttribute("style", "background-color: #C0A080");
@@ -138,7 +136,6 @@ function returnResultsFiveDay() {
                 fiveDayForecastEls[i].innerHTML = "";
 
                 var forecastIndex = i + 4;
-                // console.log(forecastIndex)
                 var weatherIconCode = (data.list[forecastIndex].weather[0].icon);
                 console.log(weatherIconCode);
                 var weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIconCode + ".png"
@@ -229,33 +226,37 @@ function returnResultsFiveDay() {
         })
 };
 
-function clearCurrentResult() {
-    $("#results-display"),
-    $("#weather-icon"),
-    $("#temperature"),
-    $("#wind"),
-    $("#humidity"),
-    $("#uvIndexResult"),
-    $("#first-day"),
-    $("#weather-icon-first"),
-    $("#second-day"),
-    $("#weather-icon-second"),
-    $("#third-day"),
-    $("#weather-icon-third"),
-    $("#fourth-day"),
-    $("#weather-icon-fourth"),
-    $("#fifth-day"),
-    $("#weather-icon-fifth").remove().contents(textContent);
-    return;
-};
+// Function to clear previous city results
+// function clearCurrentResult() {
+//     $("#results-display").remove();
+//     // $("#weather-icon"),
+//     // $("#temperature"),
+//     // $("#wind"),
+//     // $("#humidity"),
+//     // $("#uvIndexResult"),
+//     // $("#first-day"),
+//     // $("#weather-icon-first"),
+//     // $("#second-day"),
+//     // $("#weather-icon-second"),
+//     // $("#third-day"),
+//     // $("#weather-icon-third"),
+//     // $("#fourth-day"),
+//     // $("#weather-icon-fourth"),
+//     // $("#fifth-day"),
+//     // $("#weather-icon-fifth").html("");
+//     // return;
+// };
 
+// Function to handle a second city search after the original
 function handleOtherCityFormSubmit() {
     searchBtn.onclick = function (event) {
         event.preventDefault
+        $("#results-display").html("");
+    // clearCurrentResult();
     searchHistoryStore();
     returnResultsCurrentDay();
     returnResultsFiveDay();
-    clearCurrentResult();
+    ;
     clickCounter++;
     return;
     };
@@ -270,11 +271,10 @@ function pastCityRestore(event) {
     if (pastCityBtn.matches(".past-city")) {
         userCityEntry = pastCityBtn.textContent;
 
-
+        clearCurrentResult();
         searchHistoryStore();
         returnResultsCurrentDay();
         returnResultsFiveDay();
-        clearCurrentResult();
     };
     pastCityBtn.on("click", pastCityRestore);
 };

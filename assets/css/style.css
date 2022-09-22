@@ -1,3 +1,4 @@
+/* Colour scheme */
 :root {
     --maincolor: #7882A4;
     --secondarycolor: #C0A080;
@@ -5,6 +6,7 @@
     --shadowcolor: #D1D1D1;
 }
 
+/* Body styling */
 body {
     width: 100%;
     height: 100%;
@@ -14,6 +16,7 @@ body {
 
 }
 
+/* Header styling */
 header {
     width: 100%;
     text-align: center;
@@ -24,43 +27,51 @@ header {
     margin-bottom: 1%;
 }
 
+/* Form styling */
 form {
     width: 60rem;
 }
 
+/* Form title font size */
 form label {
     font-size: 200%;
 }
 
+/* Form elements styling */
 input,
 button {
     margin-top: 10%;
     border-radius: 10px;
 }
 
+/* Left hand side of screen styling */
 .city-search,
 .previous-city {
     margin-left: 2%;
     justify-content: left;
 }
 
+/* Past city button styling */
 .past-city {
     background-color: var(--secondarycolor);
     color: var(--fontcolor);
     font-weight: bold;
 }
 
+/* Current day result styling */
 #current-day-result {
     background-color: var(--shadowcolor);
     border-radius: 10px;
     margin: 5px;
 }
 
+/* Individual aspects of current day result styling */
 span {
     width: 85%;
     padding: 2%;
 }
 
+/* UV index background colour styling */
 #uv-index {
     width: 85%;
     padding: 2%;
@@ -77,10 +88,6 @@ span {
     width: 100%;
     margin-left: 1%;
 }
-
-/* #five-day-result {
-    margin-left: 25%;
-} */
 
 #first-day,
 #second-day,
