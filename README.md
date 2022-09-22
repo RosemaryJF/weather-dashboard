@@ -41,6 +41,11 @@ The second is by cloning the repo using the SSH key onto your local machine and 
 
 On the landing page the user is met with a mainly empty page due to the results containers being hidden. The user enters a city in the input area and hits the "Search this City" button. They are then presented with the current day result and five day forecast for the city they have searched. The city is appended to a button so they can re-click and load the results if needed (this is still very buggy on loading, will be debugged at a late date due to time constraints). 
 
+The application looks like below:
+
+![Example of user interface](./assets/images/example-screen-grab.png)
+
+
 ---
 
 ## Features
