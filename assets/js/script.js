@@ -17,6 +17,7 @@ function citySearch(event) {
     event.preventDefault();
     $("#current-day-result").removeAttr("style");
     $("#five-day-result").removeAttr("style");
+    clearCurrentResult();
     searchHistoryStore();
     returnResultsCurrentDay();
     returnResultsFiveDay();
@@ -227,38 +228,35 @@ function returnResultsFiveDay() {
 };
 
 // Function to clear previous city results
-// function clearCurrentResult() {
-//     $("#results-display").remove();
-//     // $("#weather-icon"),
-//     // $("#temperature"),
-//     // $("#wind"),
-//     // $("#humidity"),
-//     // $("#uvIndexResult"),
-//     // $("#first-day"),
-//     // $("#weather-icon-first"),
-//     // $("#second-day"),
-//     // $("#weather-icon-second"),
-//     // $("#third-day"),
-//     // $("#weather-icon-third"),
-//     // $("#fourth-day"),
-//     // $("#weather-icon-fourth"),
-//     // $("#fifth-day"),
-//     // $("#weather-icon-fifth").html("");
-//     // return;
-// };
+function clearCurrentResult() {
+    $("#results-display").empty()
+    $("#weather-icon").empty()
+    $("#temperature").empty()
+    $("#wind").empty()
+    $("#humidity").empty()
+    $("#uvIndexResult").empty()
+    $("#first-day").empty()
+    $("#weather-icon-first").empty()
+    $("#second-day").empty()
+    $("#weather-icon-second").empty()
+    $("#third-day").empty()
+    $("#weather-icon-third").empty()
+    $("#fourth-day").empty()
+    $("#weather-icon-fourth").empty()
+    $("#fifth-day").empty()
+    $("#weather-icon-fifth").empty()
+};
 
 // Function to handle a second city search after the original
 function handleOtherCityFormSubmit() {
     searchBtn.onclick = function (event) {
         event.preventDefault
-        $("#results-display").html("");
-    // clearCurrentResult();
-    searchHistoryStore();
-    returnResultsCurrentDay();
-    returnResultsFiveDay();
-    ;
-    clickCounter++;
-    return;
+        clearCurrentResult();
+        searchHistoryStore();
+        returnResultsCurrentDay();
+        returnResultsFiveDay();
+        clickCounter++;
+        return;
     };
 };
 
