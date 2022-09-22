@@ -21,15 +21,15 @@ function citySearch(event) {
     returnResultsCurrentDay();
     returnResultsFiveDay();
     returnFiveDayDate();
+    clickCounter++;
     return;
 };
 
 var clickCounter = 0;
 searchBtn.onclick = function (event) {
     event.preventDefault
-    clickCounter++;
-    if (clickCounter > 2) {
-        handleSecondCityFormSubmit()
+    if (clickCounter == 2 ) {
+        handleOtherCityFormSubmit()
     }
 };
 
@@ -223,39 +223,62 @@ function returnResultsFiveDay() {
                     futureForecastWind +
                     "<br>" + "<br>" + "Humidity: " +
                     futureForecastHumidity);
-                return
+                return;
             }
+            
         })
 };
 
-function handleSecondCityFormSubmit(event) {
-    event.preventDefault();
-    userCityEntry = $("#user-input").val();
-
-    clearCurrentResult();
-    returnResultsCurrentDay();
-    returnResultsFiveDay();
-    returnFiveDayDate();
+function clearCurrentResult() {
+    $("#results-display"),
+    $("#weather-icon"),
+    $("#temperature"),
+    $("#wind"),
+    $("#humidity"),
+    $("#uvIndexResult"),
+    $("#first-day"),
+    $("#weather-icon-first"),
+    $("#second-day"),
+    $("#weather-icon-second"),
+    $("#third-day"),
+    $("#weather-icon-third"),
+    $("#fourth-day"),
+    $("#weather-icon-fourth"),
+    $("#fifth-day"),
+    $("#weather-icon-fifth").remove().contents(textContent);
     return;
 };
 
+function handleOtherCityFormSubmit() {
+    searchBtn.onclick = function (event) {
+        event.preventDefault
+    searchHistoryStore();
+    returnResultsCurrentDay();
+    returnResultsFiveDay();
+    clearCurrentResult();
+    clickCounter++;
+    return;
+    };
+};
+
+
 // Function restore previously searched city
 function pastCityRestore(event) {
-    var pastCityBtn = event.target;
+    var pastCityBtn = event.target("click");
     event.preventDefault()
 
     if (pastCityBtn.matches(".past-city")) {
         userCityEntry = pastCityBtn.textContent;
 
-        clearCurrentResult();
+
+        searchHistoryStore();
         returnResultsCurrentDay();
         returnResultsFiveDay();
-        returnFiveDayDate();
-    }
-}
-
-function clearCurrentResult() {
-    resultsDisplayEl.innerHTML = "";
-    fiveDayForecastEl.innerHTML= "";
-    return;
+        clearCurrentResult();
+    };
+    pastCityBtn.on("click", pastCityRestore);
 };
+
+
+
+
